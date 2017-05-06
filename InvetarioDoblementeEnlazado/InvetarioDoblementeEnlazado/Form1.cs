@@ -22,10 +22,17 @@ namespace InvetarioDoblementeEnlazado
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             Producto item = new Producto();
-            item.codigo = Convert.ToInt32(txbCodigo.Text);
-            item.setNombre(txbNombre.Text);
-            item.catidad = Convert.ToInt32(txbCandidad.Text);
-            item.costo = Convert.ToInt32(txbPrecio.Text);
+            try
+            {
+                item.codigo = Convert.ToInt32(txbCodigo.Text);
+                item.setNombre(txbNombre.Text);
+                item.catidad = Convert.ToInt32(txbCandidad.Text);
+                item.costo = Convert.ToInt32(txbPrecio.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Revise los datos ingresados.");
+            }
 
             almacen.agregar(item);
         }
@@ -49,7 +56,19 @@ namespace InvetarioDoblementeEnlazado
 
         private void btnAddFirst_Click(object sender, EventArgs e)
         {
-            almacen.borrarInicio();
+            Producto item = new Producto();
+            try
+            {
+                item.codigo = Convert.ToInt32(txbCodigo.Text);
+                item.setNombre(txbNombre.Text);
+                item.catidad = Convert.ToInt32(txbCandidad.Text);
+                item.costo = Convert.ToInt32(txbPrecio.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Revise los datos ingresados.");
+            }
+            almacen.agregarInicio(item);
         }
 
         private void btnDeleteFirst_Click(object sender, EventArgs e)
@@ -65,10 +84,17 @@ namespace InvetarioDoblementeEnlazado
         private void btnInsertar_Click(object sender, EventArgs e)
         {
             Producto item = new Producto();
-            item.codigo = Convert.ToInt32(txbCodigo.Text);
-            item.setNombre(txbNombre.Text);
-            item.catidad = Convert.ToInt32(txbCandidad.Text);
-            item.costo = Convert.ToInt32(txbPrecio.Text);
+            try
+            {
+                item.codigo = Convert.ToInt32(txbCodigo.Text);
+                item.setNombre(txbNombre.Text);
+                item.catidad = Convert.ToInt32(txbCandidad.Text);
+                item.costo = Convert.ToInt32(txbPrecio.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Revise los datos ingresados.");
+            }
 
             almacen.insertarProducto(item, Convert.ToInt32(txbPosicion.Text));
             
@@ -82,6 +108,11 @@ namespace InvetarioDoblementeEnlazado
         private void btnReporteInv_Click(object sender, EventArgs e)
         {
             txbReporte.Text = almacen.reporteInvertido();
+        }
+
+        private void btnInformacion_Click(object sender, EventArgs e)
+        {
+            //almacen.datos();
         }
     }
 }

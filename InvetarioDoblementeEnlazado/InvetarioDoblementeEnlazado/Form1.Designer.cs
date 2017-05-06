@@ -48,6 +48,7 @@
             this.btnAddFirst = new System.Windows.Forms.Button();
             this.btnDeleteLast = new System.Windows.Forms.Button();
             this.btnDeleteFirst = new System.Windows.Forms.Button();
+            this.btnInformacion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBuscar
@@ -231,11 +232,22 @@
             this.btnDeleteFirst.UseVisualStyleBackColor = true;
             this.btnDeleteFirst.Click += new System.EventHandler(this.btnDeleteFirst_Click);
             // 
+            // btnInformacion
+            // 
+            this.btnInformacion.Location = new System.Drawing.Point(14, 419);
+            this.btnInformacion.Name = "btnInformacion";
+            this.btnInformacion.Size = new System.Drawing.Size(75, 23);
+            this.btnInformacion.TabIndex = 42;
+            this.btnInformacion.Text = "Informacion";
+            this.btnInformacion.UseVisualStyleBackColor = true;
+            this.btnInformacion.Click += new System.EventHandler(this.btnInformacion_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(730, 389);
+            this.ClientSize = new System.Drawing.Size(730, 371);
+            this.Controls.Add(this.btnInformacion);
             this.Controls.Add(this.btnDeleteFirst);
             this.Controls.Add(this.btnDeleteLast);
             this.Controls.Add(this.btnAddFirst);
@@ -285,6 +297,7 @@
         private System.Windows.Forms.Button btnAddFirst;
         private System.Windows.Forms.Button btnDeleteLast;
         private System.Windows.Forms.Button btnDeleteFirst;
+        private System.Windows.Forms.Button btnInformacion;
     }
 }
 
