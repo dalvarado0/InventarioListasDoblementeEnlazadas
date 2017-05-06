@@ -63,23 +63,52 @@ namespace InvetarioDoblementeEnlazado
         public void borrar(int codigo)
         {
             Producto temp = inicio;
-            while (temp.siguiente != null)
+
+            if(temp.codigo == codigo)
             {
-                if (temp.codigo == codigo)
+                if(temp.siguiente == null)
                 {
                     inicio = temp.siguiente;
-                    temp = inicio;
                 }
-                else
+                inicio = temp.siguiente;
+            }
+            else
+            {
+                while (temp.siguiente != null)
                 {
-                    if (temp.siguiente.codigo == codigo)
+                    if (temp.codigo == codigo)
                     {
-                        temp.siguiente = temp.siguiente.siguiente;
-                        break;
+                        inicio = temp.siguiente;
+                        //temp = inicio;
                     }
-                    temp = temp.siguiente;
+                    else
+                    {
+                        if (temp.siguiente.codigo == codigo)
+                        {
+                            temp.siguiente = temp.siguiente.siguiente;
+                            break;
+                        }
+                        temp = temp.siguiente;
+                    }
                 }
             }
+            //while (temp.siguiente != null)
+            //{
+            //    if (temp.codigo == codigo)
+            //    {
+            //        inicio = temp.siguiente;
+            //        //temp = inicio;
+            //    }
+            //    else
+            //    {
+            //        if (temp.siguiente.codigo == codigo)
+            //        {
+            //            temp.siguiente = temp.siguiente.siguiente;
+            //            break;
+            //        }
+            //        temp = temp.siguiente;
+            //    }
+            //}
         }
 
         /// <summary>
@@ -105,7 +134,8 @@ namespace InvetarioDoblementeEnlazado
         /// </summary>
         public void borrarUltimo()
         {
-            ultimo = ultimo.anterior;
+            ultimo.anterior.siguiente = null;
+            ultimo = ultimo.anterior; 
         }
 
         /// <summary>
@@ -115,7 +145,7 @@ namespace InvetarioDoblementeEnlazado
         /// <param name="posicion">Lugar en la lista que se va a insertar.</param>
         public void insertarProducto(Producto nuevo, int posicion)
         {
-            Producto temp = inicio, antItem = inicio.anterior;
+            Producto temp = inicio, antItem;
             int cont = 1;
             if (posicion == 1)
             {
@@ -126,11 +156,11 @@ namespace InvetarioDoblementeEnlazado
             {
                 do
                 {
-                    antItem = temp.anterior;
+                    antItem = temp;
                     temp = temp.siguiente;
                     cont++;
                 } while (temp.siguiente != null || cont < posicion - 1);
-                antItem.siguiente = nuevo;
+                antItem.siguiente = nuevo;  //Error en antItem es igual a null y por eso no se puede igualar.
                 nuevo.siguiente = temp;
             }
         }
@@ -156,7 +186,8 @@ namespace InvetarioDoblementeEnlazado
         /// empezando por el ultimo objeto.
         /// </summary>
         /// <returns></returns>
-        public string reporteInvertido()
+        /// 
+        public string reporteInvertido() 
         {
             string reporte = "";
             Producto temp = ultimo;
@@ -172,8 +203,15 @@ namespace InvetarioDoblementeEnlazado
                 return item.ToString() + Environment.NewLine;
             else
             {
-                return reporteInv(item.siguiente) + item.ToString() + Environment.NewLine;
+                //return reporteInv(item.anterior) + item.ToString() + Environment.NewLine; //Esto regresa el reporte normal.
+                return item.ToString() + Environment.NewLine + reporteInv(item.anterior); //Esto regresa el reporte invertido.
             }
         }
+
+        //public int datos()
+        //{
+        //    Producto temp = inicio;
+        //    return 0;
+        //}
     }
 }
